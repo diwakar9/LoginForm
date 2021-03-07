@@ -42,65 +42,27 @@
             display: block;
             margin-left: 20px;
             color: red;
-            font-style: italic;
-        }
-        #snackbar{
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
-        }
-        #snackbar.show {
-    visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
-
-@-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
-}
-
-@keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-}
-
-@-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
-    to {bottom: 0; opacity: 0;}
-}
-
-@keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-}
+            font-style: bold;
+        }        
+        .required{
+            color: red;
+        }        
         </style>      
     </head>
     <body>
         <form action="swipe.html" method="POST">
             <div>
-                <label for="username">UserName</label>
-                <input type ="text" name="username" placeholder="username">
+                <label for="username">Username</label>
+                <input type ="text" name="username" placeholder="Enter username. For eg: dwdhungana">
                 <span></span>
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" name="password" placeholder="password">
+                <input type="password" name="password" placeholder="Enter password: For eg: dwd123@">
                 <span></span>
             </div>
-            <button id="log-in">Login</button> 
-            <div id="snackbar">Login Successfull.</div>           
-        </form>
+            <button id="log-in">Login</button>                                     
+        </form>        
     </body>
 </html>
 <script type="text/javascript">
@@ -110,39 +72,29 @@
     }
     var input = document.getElementsByTagName('input');
     var login = document.getElementById('log-in');
-    var form = document.querySelector('form');
-    var snackbar = document.getElementById("snackbar");
-    //form.onsubmit=()=>{return false}
+    var form = document.querySelector('form');    
+    form.onsubmit=()=>{return false}
     login.onclick=()=>{
         if((input[0].value != "") &&(input[1].value != ""))
         {
             if((input[0].value == sessionStorage.getItem("username"))&&(input[1].value == sessionStorage.getItem("password")))
             {
-                form.onsubmit=()=>{return myFunction()}
+                form.onsubmit=()=>{return 1}
                 document.cookie = "username"+ input[0].value;
-                document.cookie = "password"+input[1].value;
-                function myFunction(){                    
-                    snackbar.className = "show";
-                    setTimeout(function(){
-                        snackbar.className = snackbar.className.replace("show", "");
-                        
-                    }, 2000);
-                }
-                
-
+                document.cookie = "password"+ input[1].value;                        
             }
             else
             {
                 if((input[0].value != sessionStorage.getItem("username")))
                 {
-                    input[0].nextElementSibling.textContent = "Username Not match";
+                    input[0].nextElementSibling.textContent = "Username not match";
                     setTimeout(() => {
                         input[0].nextElementSibling.textContent = ""                        
                     }, 2000);
                 }
                 if((input[1].value != sessionStorage.getItem("password")))
                 {
-                    input[1].nextElementSibling.textContent = "Password Not match";
+                    input[1].nextElementSibling.textContent = "Password not match";
                     setTimeout(() => {
                         input[1].nextElementSibling.textContent = ""                        
                     }, 2000);
@@ -153,14 +105,14 @@
         {
             if(input[0].value == "")
             {
-                input[0].nextElementSibling.textContent = "Username is Empty";
+                input[0].nextElementSibling.textContent = "Please enter Username";
                 setTimeout(()=>{
                     input[0].nextElementSibling.textContent = "";
                 }, 2000);
             }
             if(input[1].value == "")
             {
-                input[1].nextElementSibling.textContent = "Password is empty";
+                input[1].nextElementSibling.textContent = "Please enter Password";
                 setTimeout(() => {
                     input[1].nextElementSibling .textContent = "";                    
                 }, 2000);
