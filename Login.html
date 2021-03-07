@@ -2,7 +2,7 @@
 <html large="en">
     <head>
         <meta charset ="UTF -8">
-        <title>Normal Login Form</title>
+        <title>Normal Login</title>
         <style type="text/css">
         form{
             width: 600px;
@@ -45,12 +45,16 @@
             font-style: bold;
         }        
         .required{
-            color: red;
+            color: green;
+            font-style: bold;
         }        
         </style>      
     </head>
     <body>
         <form action="swipe.html" method="POST">
+            <div>                
+                <p class="required">Enter the valid Username and Password.</p>
+            </div>            
             <div>
                 <label for="username">Username</label>
                 <input type ="text" name="username" placeholder="Enter username. For eg: dwdhungana">
@@ -80,8 +84,8 @@
             if((input[0].value == sessionStorage.getItem("username"))&&(input[1].value == sessionStorage.getItem("password")))
             {
                 form.onsubmit=()=>{return 1}
-                document.cookie = "username"+ input[0].value;
-                document.cookie = "password"+ input[1].value;                        
+                document.cookie = "username" + input[0].value;
+                document.cookie = "password" + input[1].value;                        
             }
             else
             {
